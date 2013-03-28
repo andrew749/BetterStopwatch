@@ -10,14 +10,14 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 public class SpecialAdapter extends BaseAdapter {
-	static ArrayList arrayToWorkWith;
+	static String[] arrayToWorkWith;
 	static int numberOfOptions;
 	private LayoutInflater inflater = null;
 	private TextView time, position;
 
-	public SpecialAdapter(Context context, ArrayList list) {
+	public SpecialAdapter(Context context, String[] list) {
 		 arrayToWorkWith=list;
-		 numberOfOptions=arrayToWorkWith.size();
+		 numberOfOptions=arrayToWorkWith.length;
 		 inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
@@ -40,6 +40,7 @@ public class SpecialAdapter extends BaseAdapter {
 		// TODO Auto-generated method stub
 		arg1=inflater.inflate(R.layout.listitem,arg2, false);
 		time=(TextView)arg1.findViewById(R.id.listitemtext);
+		time.setText((String)arrayToWorkWith[arg0]);
 		return arg1;
 	}
 

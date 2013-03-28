@@ -29,13 +29,13 @@ public class MainActivity extends Activity {
 	// String with time values=
 	String timem, times;
 	// String array to hold lap times
-	ArrayList<String> laps;
+	String[] laps;
 	// vlaue to hold the spot of the array
 	int spot = 0;
 	// final time put together
 	String finaltime;
 	// array adapter for list
-	ArrayAdapter<String> a;
+	SpecialAdapter a;
 	// thread to update time
 	Runnable r = new Runnable() {
 		public void run() {
@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
 				}
 				// laps logic
 				else if (timerstate == 1) {
-					laps.add(finaltime);
+					laps[spot]=finaltime;
 					lv.setAdapter(a);
 					++spot;
 				}
@@ -103,7 +103,6 @@ public class MainActivity extends Activity {
 				} else if (stopstate == 1) {
 					tv.setText("00:00");
 					timerstate = 0;
-					a.clear();
 					lv.postInvalidate();
 					stop.setText("Stop");
 					start.setText("Start");
@@ -128,9 +127,8 @@ public class MainActivity extends Activity {
 		changetime = new Handler();
 		timerstate = 0;
 		stopstate = 0;
-		laps = new ArrayList<String>();
-		a = new ArrayAdapter<String>(getApplicationContext(),
-				android.R.layout.simple_list_item_1, laps);
+		laps = new String[100];
+		a = new SpecialAdapter(getApplicationContext(),laps);
 		tv = (TextView) findViewById(R.id.textView1);
 		lv = (ListView) findViewById(R.id.listView1);
 	}
