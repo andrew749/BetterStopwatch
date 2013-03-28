@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import com.andrew749.stopwatch.*;
 public class SpecialAdapter extends BaseAdapter {
 	static String[] arrayToWorkWith;
 	static int numberOfOptions;
@@ -34,6 +34,12 @@ public class SpecialAdapter extends BaseAdapter {
 	public long getItemId(int arg0) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	// a method to run through the array and delete all the values
+	public void clear(){
+		for (int i=0;i<numberOfOptions;i++){
+			arrayToWorkWith[i]="";
+		}
 	}
 
 	public View getView(int arg0, View arg1, ViewGroup arg2) {

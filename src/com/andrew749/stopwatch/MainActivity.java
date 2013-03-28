@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
 				}
 				// laps logic
 				else if (timerstate == 1) {
-					laps[spot]=finaltime;
+					laps[spot] = finaltime;
 					lv.setAdapter(a);
 					++spot;
 				}
@@ -103,7 +103,9 @@ public class MainActivity extends Activity {
 				} else if (stopstate == 1) {
 					tv.setText("00:00");
 					timerstate = 0;
-					lv.postInvalidate();
+					laps = new String[100];
+					a.clear();
+					lv.setAdapter(a);
 					stop.setText("Stop");
 					start.setText("Start");
 					stopstate = 0;
@@ -128,7 +130,7 @@ public class MainActivity extends Activity {
 		timerstate = 0;
 		stopstate = 0;
 		laps = new String[100];
-		a = new SpecialAdapter(getApplicationContext(),laps);
+		a = new SpecialAdapter(getApplicationContext(), laps);
 		tv = (TextView) findViewById(R.id.textView1);
 		lv = (ListView) findViewById(R.id.listView1);
 	}
@@ -136,7 +138,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		//still keeping time while the app is paused
+		// still keeping time while the app is paused
 	}
 
 	@Override
@@ -144,6 +146,5 @@ public class MainActivity extends Activity {
 		super.onDestroy();
 		finish();
 	}
-	
 
 }
